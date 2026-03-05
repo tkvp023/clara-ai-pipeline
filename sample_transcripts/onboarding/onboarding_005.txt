@@ -1,0 +1,32 @@
+ONBOARDING CALL TRANSCRIPT - Account: Guardian Pest Solutions
+Account ID: guardian-pest-solutions-001
+Date: 2024-01-26
+Duration: 21 minutes
+
+Onboarding Specialist (Clara): Hi Tony! Let's finalize Guardian's setup. Starting with hours — Mon-Fri 7:30-6, Sat 8-2?
+
+Tony Barros: Updated hours. Mon-Fri stays the same. Saturday is now 7:30 AM to 4 PM. And we added Sunday 9 AM to 1 PM during peak season — May through September only. I'll let you know when to toggle that on.
+
+Clara: Emergency definition changes?
+
+Tony: Yes. We removed the health code violation language — too complicated for the agent to assess. New simplified emergency list: active bee or wasp swarm inside a structure, venomous snake inside the home, and bed bug infestation in a hotel or short-term rental (because of the business impact). Wildlife inside a living space — like a raccoon or bat — also added as emergency now.
+
+Clara: Emergency routing changes?
+
+Tony: Sandra Okafor moved to a regional manager role so she's no longer on the emergency line. New primary is our emergency response tech, James Ibarra, at 407-555-0710. Derek Hughes stays as secondary at 407-555-0281. We added a third — our 24-hour pest emergency line at 407-555-2400 as final fallback.
+
+Clara: PestPac rule changes?
+
+Tony: Two new ones. Never create a mosquito treatment job between November and March — it's off-season and we don't offer that service in winter. And all bed bug jobs require a pre-inspection to be booked first, not a direct treatment — similar to the termite rule.
+
+Clara: Greeting or style changes?
+
+Tony: Keep the greeting but add after it: "Are you a current Guardian customer, or is this your first time calling?" We want to route existing customers faster without repeating the intake form.
+
+Clara: Transfer rules?
+
+Tony: Transfer wait goes from 45 seconds to 30 seconds — we've had complaints about wait time. Callback promise stays at 2 hours. But for commercial accounts, callback is 1 hour.
+
+Clara: Anything else?
+
+Tony: Yes — we have a new service called Guardian Shield, which is our annual membership. The agent should mention it at the end of every residential call: "Before I let you go, are you interested in hearing about our Guardian Shield annual protection plan?" This is mandatory for every residential call close.

@@ -1,0 +1,36 @@
+ONBOARDING CALL TRANSCRIPT - Account: Summit Roofing & Restoration
+Account ID: summit-roofing-restoration-001
+Date: 2024-01-25
+Duration: 28 minutes
+
+Onboarding Specialist (Clara): Hi Diane, ready to finalize Summit's agent setup.
+
+Diane Foster: Yes, let's do it. A lot has changed actually since the demo.
+
+Clara: Let's go through it. Hours first — Mon-Fri 8-5, Sat 9-1 estimates only?
+
+Diane: Hours expanded. We're now Mon-Fri 7:30 AM to 6 PM Central. Saturdays 8 AM to 4 PM — and Saturday is no longer estimates only, we now take all call types on Saturday. Closed Sundays still.
+
+Clara: Emergency definition changes?
+
+Diane: We added two. Heavy interior flooding from a roof breach is now an emergency (previously just "active roof leak causing interior damage"). And we added "structural collapse risk" as an emergency trigger. So the full list is: active roof leak causing interior water damage, major storm damage where structure is exposed, tree on roof, heavy interior flooding from roof breach, and structural collapse risk.
+
+Clara: Emergency routing?
+
+Diane: Marcus Webb is still primary at 615-555-0211. We added a secondary — our new storm crew lead, Priya Nair, at 615-555-0455. The emergency voicemail inbox at 615-555-0999 becomes the fallback if both fail. Operations line 615-555-0340 is removed — that number was disconnected.
+
+Clara: JobNimbus rule changes?
+
+Diane: New rules. First — all storm damage jobs must have a photo attached before the job is created, no exceptions. Second — insurance claim jobs must be tagged with the insurance carrier name in JobNimbus. Third — never schedule a metal roof job without confirming we have a certified metal roofing technician available that week.
+
+Clara: Conversation style changes?
+
+Diane: We want the agent to ask about insurance earlier in the conversation — make it the second question after getting their name. Something like "Are you filing an insurance claim for this, or is it a self-pay job?" That helps routing immediately.
+
+Clara: Callback or transfer changes?
+
+Diane: Transfer wait stays at 60 seconds. But the callback promise on transfer failure — reduce from 3 hours to 90 minutes. And for insurance claim calls specifically, the callback promise is 1 business day since those go to a specialist.
+
+Clara: Anything else?
+
+Diane: We have a referral program now. If a caller was referred by a previous customer, they should be flagged as "referral" in the intake and told they qualify for our referral discount. The agent should ask "Were you referred to us by anyone?" at the end of every call.

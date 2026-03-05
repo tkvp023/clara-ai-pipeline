@@ -1,0 +1,115 @@
+{
+  "account_id": "brightline-electrical-services-001",
+  "company_name": "Brightline Electrical Services",
+  "from_version": "v1",
+  "to_version": "v2",
+  "updated_at": "2026-03-05T05:42:00Z",
+  "changes": [
+    {
+      "field": "business_hours.days",
+      "old_value": "Monday-Saturday",
+      "new_value": "Monday-Sunday",
+      "reason": "Updated hours to include Sundays for scheduling"
+    },
+    {
+      "field": "business_hours.start",
+      "old_value": "8:00 AM",
+      "new_value": "7:00 AM",
+      "reason": "Extended weekday hours"
+    },
+    {
+      "field": "business_hours.end",
+      "old_value": "7:00 PM",
+      "new_value": "8:00 PM",
+      "reason": "Extended weekday hours"
+    },
+    {
+      "field": "business_hours.sunday",
+      "old_value": null,
+      "new_value": "10:00 AM - 3:00 PM",
+      "reason": "Added Sunday hours for scheduling"
+    },
+    {
+      "field": "emergency_definition",
+      "old_value": [
+        "complete power outage to the whole home",
+        "sparking or burning smell from an outlet or panel",
+        "downed power lines on property",
+        "flooding near electrical panels"
+      ],
+      "new_value": [
+        "complete power outage to the whole home",
+        "sparking or burning smell from an outlet or panel",
+        "downed power lines on property",
+        "electrical fire or smoke from a panel"
+      ],
+      "reason": "Removed flooding near electrical panels, added electrical fire or smoke from a panel"
+    },
+    {
+      "field": "emergency_routing_rules.primary",
+      "old_value": {
+        "name": "on-call electrician",
+        "phone": "602-555-0177"
+      },
+      "new_value": {
+        "name": "Linda Park",
+        "phone": "602-555-0601"
+      },
+      "reason": "Updated primary on-call to Linda Park"
+    },
+    {
+      "field": "emergency_routing_rules.secondary",
+      "old_value": {
+        "name": "Linda Park",
+        "phone": "602-555-0388"
+      },
+      "new_value": {
+        "name": "on-call electrician",
+        "phone": "602-555-0177"
+      },
+      "reason": "Updated secondary on-call to on-call electrician"
+    },
+    {
+      "field": "integration_constraints",
+      "old_value": [
+        "never create a job for EV charger installs without first confirming the customer has a 200-amp panel",
+        "never discuss competitor pricing"
+      ],
+      "new_value": [
+        "never create a job for EV charger installs without first confirming the customer has a 200-amp panel",
+        "never create a job for panel upgrades without first confirming the property type is not a mobile or manufactured home",
+        "never discuss competitor pricing"
+      ],
+      "reason": "Added constraint for panel upgrades"
+    },
+    {
+      "field": "call_transfer_rules.wait_seconds",
+      "old_value": 30,
+      "new_value": {
+        "emergency": 20,
+        "non_emergency": 30
+      },
+      "reason": "Reduced transfer wait for emergencies to 20 seconds"
+    },
+    {
+      "field": "call_transfer_rules.fail_action",
+      "old_value": "apologize and say we'll call back within 90 minutes",
+      "new_value": "apologize and say we'll call back within 60 minutes",
+      "reason": "Updated callback promise to 60 minutes"
+    },
+    {
+      "field": "special_instructions",
+      "old_value": [
+        "always ask if the customer is a repeat client",
+        "repeat clients get priority scheduling"
+      ],
+      "new_value": [
+        "always ask if the customer is a repeat client",
+        "repeat clients get priority scheduling",
+        "mention free electrical safety inspection at the end of non-emergency calls"
+      ],
+      "reason": "Added instruction to mention free electrical safety inspection"
+    }
+  ],
+  "total_changes": 11
+}

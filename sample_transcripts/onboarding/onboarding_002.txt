@@ -1,0 +1,32 @@
+ONBOARDING CALL TRANSCRIPT - Account: Riverside Plumbing & Drain
+Account ID: riverside-plumbing-drain-001
+Date: 2024-01-23
+Duration: 22 minutes
+
+Onboarding Specialist (Clara): Hi Janet, welcome aboard! Let's finalize everything for your agent setup.
+
+Janet Wu: Thanks, excited to get this running.
+
+Clara: Let's confirm your hours first — Mon-Fri 7 AM to 5 PM Mountain, 24/7 emergency?
+
+Janet: Small update — we added Saturday 8 AM to noon for non-emergency calls only. Still 24/7 for emergencies.
+
+Clara: Any changes to your emergency definitions?
+
+Janet: Yes — we're removing "water heater explosions" from the list, that was too vague. New full list: burst pipes, sewage backup into the home, complete loss of water to the house, gas line leaks, and we're adding flooding from a broken appliance like a washing machine line.
+
+Clara: Emergency routing changes?
+
+Janet: Rick Sanchez left the company. New primary on-call is Maria Gonzalez at 720-555-0501. The backup line stays at 720-555-0290. We also added a third option — if both fail, caller should be transferred to our answering service at 720-555-4444. They operate 24/7.
+
+Clara: ServiceTitan rules — anything new?
+
+Janet: Two new ones. Never create a job without the customer's full address verified — we had technicians show up at the wrong location twice. Also, all commercial plumbing jobs need to be flagged as "commercial" in the job type field, not just in the notes.
+
+Clara: Greeting or conversation style changes?
+
+Janet: We want the agent to always start by asking for the customer's name first, before anything else. And add "family-owned and operated since 2016" somewhere in the greeting — like "Thank you for calling Riverside Plumbing, family-owned since 2016, how can we help you today?"
+
+Clara: Anything else?
+
+Janet: Yes — we launched a VIP customer program. If a caller mentions they're a VIP member or gives a VIP code, the agent should flag them for priority scheduling and mention they'll receive expedited service. Also, callback promise for business hours failures should be reduced from 2 hours to 1 hour.

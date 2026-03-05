@@ -1,0 +1,43 @@
+DEMO CALL TRANSCRIPT - Account: Brightline Electrical Services
+Date: 2024-01-17
+Duration: 15 minutes
+
+Sales Rep (Clara): Hi! Thanks for joining today. Tell me about Brightline.
+
+Prospect (Carlos Mendes): We're Brightline Electrical Services out of Phoenix, Arizona. We do residential and light commercial electrical — panel upgrades, wiring, outlet installs, EV charger installs, lighting. About 15 technicians on staff. Been in business 20 years.
+
+Clara: What are your hours?
+
+Carlos: We're open Monday through Saturday, 8 AM to 7 PM Arizona Time. Arizona doesn't observe daylight saving so we stay on MST year-round. Closed Sundays.
+
+Clara: Do you handle after-hours emergencies?
+
+Carlos: Yes. Electrical emergencies are: complete power outage to the whole home, sparking or burning smell from an outlet or panel, downed power lines on property, and flooding near electrical panels. Those need immediate response.
+
+Clara: Emergency routing?
+
+Carlos: Primary is our on-call electrician line at 602-555-0177. If no answer after 2 rings, escalate to our operations manager, Linda Park, at 602-555-0388. If Linda doesn't pick up, caller goes to our 24-hour answering service at 602-555-1000 — they have our on-call roster.
+
+Clara: Non-emergency after hours?
+
+Carlos: Voicemail. We call back same day if it's before 5 PM, or next morning if it comes in after 5 PM.
+
+Clara: Software?
+
+Carlos: We use Housecall Pro. Important rule — never create a job for EV charger installs without first confirming the customer has a 200-amp panel. If they don't, it routes to a panel upgrade consultation first.
+
+Clara: Address?
+
+Carlos: 4455 East Camelback Road, Suite 300, Phoenix, AZ 85018.
+
+Clara: Greeting for the agent?
+
+Carlos: "Thank you for calling Brightline Electrical, Phoenix's trusted electricians. How can I help you?"
+
+Clara: Transfer timing?
+
+Carlos: Give the caller time to explain — about 30 seconds — then transfer to dispatch. If transfer fails, apologize and say we'll call back within 90 minutes.
+
+Clara: Any other constraints?
+
+Carlos: We never discuss competitor pricing. And the agent should always ask if the customer is a repeat client — repeat clients get priority scheduling.

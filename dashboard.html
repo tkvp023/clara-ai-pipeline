@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clara AI Pipeline — Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+  header { background: #1a1d2e; border-bottom: 1px solid #2d3748; padding: 20px 32px; display: flex; align-items: center; gap: 16px; }
+  header h1 { font-size: 20px; font-weight: 700; color: #fff; }
+  header span { background: #6366f1; color: white; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px; }
+  .instructions { background: #1a1d2e; border: 1px solid #2d3748; border-radius: 12px; padding: 24px; margin-bottom: 32px; }
+  .instructions h2 { font-size: 15px; color: #a0aec0; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .steps { display: flex; flex-direction: column; gap: 8px; }
+  .step { display: flex; gap: 12px; align-items: flex-start; }
+  .step-num { background: #6366f1; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .step p { font-size: 14px; color: #cbd5e0; line-height: 1.5; }
+  .step code { background: #2d3748; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 12px; color: #a78bfa; }
+  .upload-zone { background: #1a1d2e; border: 2px dashed #4a5568; border-radius: 12px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 32px; }
+  .upload-zone:hover, .upload-zone.drag { border-color: #6366f1; background: #1e2235; }
+  .upload-zone h3 { font-size: 16px; color: #a0aec0; margin-bottom: 8px; }
+  .upload-zone p { font-size: 13px; color: #718096; }
+  .upload-zone input { display: none; }
+  .btn { background: #6366f1; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  .btn:hover { background: #5254cc; }
+  .btn-sm { padding: 6px 14px; font-size: 12px; }
+  .accounts-grid { display: grid; gap: 16px; }
+  .account-card { background: #1a1d2e; border: 1px solid #2d3748; border-radius: 12px; overflow: hidden; }
+  .account-header { padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+  .account-header:hover { background: #1e2235; }
+  .account-name { font-size: 16px; font-weight: 700; color: #fff; }
+  .account-id { font-size: 12px; color: #718096; margin-top: 2px; font-family: monospace; }
+  .badges { display: flex; gap: 8px; align-items: center; }
+  .badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+  .badge-v1 { background: #1e40af33; color: #93c5fd; border: 1px solid #1e40af; }
+  .badge-v2 { background: #05966933; color: #6ee7b7; border: 1px solid #059669; }
+  .badge-changes { background: #d9770633; color: #fbbf24; border: 1px solid #d97706; }
+  .account-body { display: none; border-top: 1px solid #2d3748; }
+  .account-body.open { display: block; }
+  .tabs { display: flex; border-bottom: 1px solid #2d3748; }
+  .tab { padding: 12px 20px; font-size: 13px; font-weight: 600; color: #718096; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .tab:hover { color: #a0aec0; }
+  .tab.active { color: #6366f1; border-bottom-color: #6366f1; }
+  .tab-content { display: none; padding: 24px; }
+  .tab-content.active { display: block; }
+  .diff-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .diff-table th { text-align: left; padding: 10px 14px; background: #2d3748; color: #a0aec0; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .diff-table td { padding: 12px 14px; border-bottom: 1px solid #2d374855; vertical-align: top; }
+  .diff-table tr:last-child td { border-bottom: none; }
+  .diff-field { font-family: monospace; color: #a78bfa; font-size: 12px; }
+  .diff-old { color: #fc8181; background: #fc818115; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+  .diff-new { color: #68d391; background: #68d39115; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+  .diff-reason { color: #a0aec0; font-size: 12px; font-style: italic; }
+  .json-viewer { background: #0d1117; border-radius: 8px; padding: 16px; overflow: auto; max-height: 400px; }
+  .json-viewer pre { font-family: 'Fira Code', monospace; font-size: 12px; line-height: 1.6; color: #e2e8f0; white-space: pre-wrap; }
+  .empty-state { text-align: center; padding: 60px 20px; color: #4a5568; }
+  .empty-state h3 { font-size: 18px; margin-bottom: 8px; color: #718096; }
+  .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .stat { background: #1a1d2e; border: 1px solid #2d3748; border-radius: 10px; padding: 20px; text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 800; color: #6366f1; }
+  .stat-label { font-size: 12px; color: #718096; margin-top: 4px; }
+  .chevron { transition: transform 0.2s; color: #718096; }
+  .chevron.open { transform: rotate(180deg); }
+  .highlight-json .string { color: #68d391; }
+  .highlight-json .number { color: #f6ad55; }
+  .highlight-json .key { color: #63b3ed; }
+  .highlight-json .null { color: #718096; }
+</style>
+</head>
+<body>
+
+<header>
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#6366f1"/><path d="M8 14c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6-6-2.7-6-6zm6-3a3 3 0 100 6 3 3 0 000-6z" fill="white"/></svg>
+  <h1>Clara AI Pipeline Dashboard</h1>
+  <span>BETA</span>
+</header>
+
+<div class="container">
+
+  <div class="instructions">
+    <h2>How to Use This Dashboard</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><p>Run the pipeline: <code>python run_all.py</code></p></div>
+      <div class="step"><div class="step-num">2</div><p>Open <code>outputs/accounts/</code> in your file explorer</p></div>
+      <div class="step"><div class="step-num">3</div><p>Drag & drop your <code>account_memo.json</code>, <code>agent_spec.json</code>, and <code>changelog.json</code> files below — or click to browse</p></div>
+      <div class="step"><div class="step-num">4</div><p>View extracted data, agent prompts, and v1→v2 diffs side by side</p></div>
+    </div>
+  </div>
+
+  <div class="upload-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+    <h3>📂 Drop your output JSON files here</h3>
+    <p>Supports account_memo.json, agent_spec.json, changelog.json — multiple files at once</p>
+    <br>
+    <button class="btn" onclick="event.stopPropagation(); document.getElementById('fileInput').click()">Browse Files</button>
+    <input type="file" id="fileInput" accept=".json" multiple>
+  </div>
+
+  <div class="stats-bar" id="statsBar" style="display:none">
+    <div class="stat"><div class="stat-num" id="statAccounts">0</div><div class="stat-label">Accounts Loaded</div></div>
+    <div class="stat"><div class="stat-num" id="statV1">0</div><div class="stat-label">v1 Agents</div></div>
+    <div class="stat"><div class="stat-num" id="statV2">0</div><div class="stat-label">v2 Agents</div></div>
+    <div class="stat"><div class="stat-num" id="statChanges">0</div><div class="stat-label">Total Changes</div></div>
+  </div>
+
+  <div class="accounts-grid" id="accountsGrid">
+    <div class="empty-state" id="emptyState">
+      <h3>No accounts loaded yet</h3>
+      <p>Upload your pipeline output JSON files above to see results</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const state = { accounts: {} };
+
+  // Drag and drop
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
+  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag'); handleFiles(e.dataTransfer.files); });
+  document.getElementById('fileInput').addEventListener('change', e => handleFiles(e.target.files));
+
+  function handleFiles(files) {
+    Array.from(files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        try {
+          const data = JSON.parse(e.target.result);
+          processFile(file.name, data);
+        } catch(err) {
+          alert('Invalid JSON: ' + file.name);
+        }
+      };
+      reader.readAsText(file);
+    });
+  }
+
+  function processFile(filename, data) {
+    let accountId = data.account_id || 'unknown';
+    if (!state.accounts[accountId]) state.accounts[accountId] = { memos: {}, specs: {}, changelogs: [] };
+    const acc = state.accounts[accountId];
+
+    if (filename.includes('changelog') || data.changes) {
+      acc.changelogs.push(data);
+    } else if (filename.includes('agent_spec') || data.agent_name) {
+      acc.specs[data.version || 'v1'] = data;
+    } else if (data.company_name) {
+      acc.memos[data.version || 'v1'] = data;
+      if (data.company_name) acc.company_name = data.company_name;
+    }
+
+    render();
+  }
+
+  function render() {
+    const grid = document.getElementById('accountsGrid');
+    const accounts = Object.entries(state.accounts);
+    document.getElementById('emptyState').style.display = accounts.length ? 'none' : 'block';
+    document.getElementById('statsBar').style.display = accounts.length ? 'grid' : 'none';
+
+    let totalChanges = 0;
+    accounts.forEach(([id, acc]) => {
+      acc.changelogs.forEach(cl => totalChanges += (cl.changes || cl.total_changes || 0));
+    });
+
+    document.getElementById('statAccounts').textContent = accounts.length;
+    document.getElementById('statV1').textContent = accounts.filter(([,a]) => a.memos.v1).length;
+    document.getElementById('statV2').textContent = accounts.filter(([,a]) => a.memos.v2).length;
+    document.getElementById('statChanges').textContent = totalChanges;
+
+    // Re-render all cards
+    grid.innerHTML = '<div class="empty-state" id="emptyState" style="display:none"></div>';
+    accounts.forEach(([id, acc]) => grid.appendChild(buildCard(id, acc)));
+  }
+
+  function buildCard(accountId, acc) {
+    const card = document.createElement('div');
+    card.className = 'account-card';
+    const changelog = acc.changelogs[0];
+    const changes = changelog ? (changelog.changes || []).length : 0;
+    const hasV2 = !!acc.memos.v2;
+
+    card.innerHTML = `
+      <div class="account-header" onclick="toggleCard('${accountId}')">
+        <div>
+          <div class="account-name">${acc.company_name || accountId}</div>
+          <div class="account-id">${accountId}</div>
+        </div>
+        <div class="badges">
+          ${acc.memos.v1 ? '<span class="badge badge-v1">v1</span>' : ''}
+          ${hasV2 ? '<span class="badge badge-v2">v2</span>' : ''}
+          ${changes ? `<span class="badge badge-changes">${changes} changes</span>` : ''}
+          <svg class="chevron" id="chev-${accountId}" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <div class="account-body" id="body-${accountId}">
+        <div class="tabs">
+          <div class="tab active" onclick="switchTab('${accountId}','memo')">Account Memo</div>
+          <div class="tab" onclick="switchTab('${accountId}','prompt')">Agent Prompt</div>
+          ${hasV2 ? `<div class="tab" onclick="switchTab('${accountId}','diff')">v1→v2 Diff</div>` : ''}
+          <div class="tab" onclick="switchTab('${accountId}','raw')">Raw JSON</div>
+        </div>
+        <div class="tab-content active" id="${accountId}-memo">${buildMemoView(acc)}</div>
+        <div class="tab-content" id="${accountId}-prompt">${buildPromptView(acc)}</div>
+        ${hasV2 ? `<div class="tab-content" id="${accountId}-diff">${buildDiffView(acc)}</div>` : ''}
+        <div class="tab-content" id="${accountId}-raw">${buildRawView(acc)}</div>
+      </div>`;
+    return card;
+  }
+
+  function buildMemoView(acc) {
+    const m = acc.memos.v2 || acc.memos.v1;
+    if (!m) return '<p style="color:#718096;padding:20px">No memo loaded</p>';
+    const version = acc.memos.v2 ? 'v2' : 'v1';
+    const rows = [
+      ['Company', m.company_name],
+      ['Address', m.office_address],
+      ['Hours', m.business_hours ? `${m.business_hours.days} ${m.business_hours.start}–${m.business_hours.end} ${m.business_hours.timezone||''}` : null],
+      ['Services', Array.isArray(m.services_supported) ? m.services_supported.join(', ') : m.services_supported],
+      ['Emergencies', Array.isArray(m.emergency_definition) ? m.emergency_definition.join('<br>') : m.emergency_definition],
+      ['Primary Contact', m.emergency_routing_rules?.primary ? `${m.emergency_routing_rules.primary.name} — ${m.emergency_routing_rules.primary.phone}` : null],
+      ['Integration Rules', Array.isArray(m.integration_constraints) ? m.integration_constraints.join('<br>') : m.integration_constraints],
+      ['Version', version],
+    ].filter(([,v]) => v);
+    return `<table class="diff-table"><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody>
+      ${rows.map(([k,v]) => `<tr><td class="diff-field">${k}</td><td style="color:#e2e8f0;font-size:13px">${v}</td></tr>`).join('')}
+    </tbody></table>`;
+  }
+
+  function buildPromptView(acc) {
+    const spec = acc.specs.v2 || acc.specs.v1;
+    if (!spec?.system_prompt) return '<p style="color:#718096;padding:20px">No agent spec loaded</p>';
+    return `<div class="json-viewer"><pre style="color:#a0aec0;white-space:pre-wrap">${escHtml(spec.system_prompt)}</pre></div>`;
+  }
+
+  function buildDiffView(acc) {
+    const cl = acc.changelogs[0];
+    if (!cl || !cl.changes?.length) return '<p style="color:#718096;padding:20px">No changelog loaded</p>';
+    return `<table class="diff-table"><thead><tr><th>Field</th><th>Before (v1)</th><th>After (v2)</th><th>Reason</th></tr></thead><tbody>
+      ${cl.changes.map(c => `<tr>
+        <td class="diff-field">${c.field||''}</td>
+        <td><span class="diff-old">${fmt(c.old_value)}</span></td>
+        <td><span class="diff-new">${fmt(c.new_value)}</span></td>
+        <td class="diff-reason">${c.reason||''}</td>
+      </tr>`).join('')}
+    </tbody></table>`;
+  }
+
+  function buildRawView(acc) {
+    const data = { memos: acc.memos, specs: acc.specs, changelog: acc.changelogs[0] || null };
+    return `<div class="json-viewer"><pre>${escHtml(JSON.stringify(data, null, 2))}</pre></div>`;
+  }
+
+  function fmt(v) {
+    if (v === null || v === undefined) return '<em style="color:#4a5568">null</em>';
+    if (typeof v === 'object') return escHtml(JSON.stringify(v).slice(0, 120));
+    return escHtml(String(v).slice(0, 200));
+  }
+
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function toggleCard(id) {
+    const body = document.getElementById('body-' + id);
+    const chev = document.getElementById('chev-' + id);
+    body.classList.toggle('open');
+    chev.classList.toggle('open');
+  }
+
+  function switchTab(accountId, tab) {
+    const body = document.getElementById('body-' + accountId);
+    body.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    body.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    body.querySelector(`#${accountId}-${tab}`).classList.add('active');
+    const tabs = body.querySelectorAll('.tab');
+    const map = { memo: 0, prompt: 1, diff: 2, raw: tabs.length - 1 };
+    if (tabs[map[tab]]) tabs[map[tab]].classList.add('active');
+  }
+</script>
+</body>
+</html>

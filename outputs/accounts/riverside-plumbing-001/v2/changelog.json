@@ -1,0 +1,95 @@
+{
+  "account_id": "riverside-plumbing-001",
+  "company_name": "Riverside Plumbing & Drain",
+  "from_version": "v1",
+  "to_version": "v2",
+  "updated_at": "2026-03-05T05:41:54Z",
+  "changes": [
+    {
+      "field": "business_hours.saturday",
+      "old_value": null,
+      "new_value": "8:00 AM - 12:00 PM",
+      "reason": "Added Saturday hours for non-emergency calls"
+    },
+    {
+      "field": "emergency_definition",
+      "old_value": [
+        "burst pipes",
+        "sewage backup into the home",
+        "complete loss of water to the house",
+        "gas line leaks",
+        "water heater explosions"
+      ],
+      "new_value": [
+        "burst pipes",
+        "sewage backup into the home",
+        "complete loss of water to the house",
+        "gas line leaks",
+        "flooding from a broken appliance"
+      ],
+      "reason": "Removed 'water heater explosions' and added 'flooding from a broken appliance'"
+    },
+    {
+      "field": "emergency_routing_rules.primary",
+      "old_value": {
+        "name": "Rick Sanchez",
+        "phone": "720-555-0134"
+      },
+      "new_value": {
+        "name": "Maria Gonzalez",
+        "phone": "720-555-0501"
+      },
+      "reason": "Updated primary on-call contact"
+    },
+    {
+      "field": "emergency_routing_rules.tertiary",
+      "old_value": {
+        "name": null,
+        "phone": null
+      },
+      "new_value": {
+        "name": "answering service",
+        "phone": "720-555-4444"
+      },
+      "reason": "Added tertiary on-call option"
+    },
+    {
+      "field": "integration_constraints",
+      "old_value": [
+        "never schedule a drain cleaning job as 'emergency' in ServiceTitan unless personally approved"
+      ],
+      "new_value": [
+        "never schedule a drain cleaning job as 'emergency' in ServiceTitan unless personally approved",
+        "never create a job without the customer's full address verified",
+        "all commercial plumbing jobs need to be flagged as 'commercial' in the job type field"
+      ],
+      "reason": "Added new ServiceTitan rules"
+    },
+    {
+      "field": "office_hours_flow_summary",
+      "old_value": "Answer with 'Thank you for calling Riverside Plumbing and Drain, how can we help you today?' Collect name, number, and basic issue description, then transfer.",
+      "new_value": "Answer with 'Thank you for calling Riverside Plumbing, family-owned since 2016, how can we help you today?' Ask for customer's name first, then collect number and basic issue description, then transfer.",
+      "reason": "Updated greeting and conversation style"
+    },
+    {
+      "field": "call_transfer_rules.fail_action",
+      "old_value": "take a full message and promise a callback within 2 hours during business hours",
+      "new_value": "take a full message and promise a callback within 1 hour during business hours",
+      "reason": "Reduced callback promise time for business hours failures"
+    },
+    {
+      "field": "special_instructions",
+      "old_value": [
+        "always verify if it's residential or commercial before routing",
+        "never quote prices on the phone"
+      ],
+      "new_value": [
+        "always verify if it's residential or commercial before routing",
+        "never quote prices on the phone",
+        "check for VIP customer program membership or code for priority scheduling"
+      ],
+      "reason": "Added instruction for VIP customer program"
+    }
+  ],
+  "total_changes": 8
+}

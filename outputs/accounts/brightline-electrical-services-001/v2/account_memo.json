@@ -1,0 +1,69 @@
+{
+  "account_id": "brightline-electrical-services-001",
+  "company_name": "Brightline Electrical Services",
+  "business_hours": {
+    "days": "Monday-Sunday",
+    "start": "7:00 AM",
+    "end": "8:00 PM",
+    "timezone": "Arizona Time",
+    "saturday": "8:00 AM - 7:00 PM",
+    "sunday": "10:00 AM - 3:00 PM"
+  },
+  "office_address": "4455 East Camelback Road, Suite 300, Phoenix, AZ 85018",
+  "services_supported": [
+    "residential electrical",
+    "light commercial electrical",
+    "panel upgrades",
+    "wiring",
+    "outlet installs",
+    "EV charger installs",
+    "lighting"
+  ],
+  "emergency_definition": [
+    "complete power outage to the whole home",
+    "sparking or burning smell from an outlet or panel",
+    "downed power lines on property",
+    "electrical fire or smoke from a panel"
+  ],
+  "emergency_routing_rules": {
+    "primary": {
+      "name": "Linda Park",
+      "phone": "602-555-0601"
+    },
+    "secondary": {
+      "name": "on-call electrician",
+      "phone": "602-555-0177"
+    },
+    "tertiary": {
+      "name": "24-hour answering service",
+      "phone": "602-555-1000"
+    },
+    "fallback_action": "caller goes to 24-hour answering service"
+  },
+  "non_emergency_routing_rules": "Voicemail. We call back same day if it's before 5 PM, or next morning if it comes in after 5 PM.",
+  "call_transfer_rules": {
+    "wait_seconds": {
+      "emergency": 20,
+      "non_emergency": 30
+    },
+    "retries": null,
+    "fail_action": "apologize and say we'll call back within 60 minutes"
+  },
+  "integration_constraints": [
+    "never create a job for EV charger installs without first confirming the customer has a 200-amp panel",
+    "never create a job for panel upgrades without first confirming the property type is not a mobile or manufactured home",
+    "never discuss competitor pricing"
+  ],
+  "after_hours_flow_summary": "After-hours non-emergency calls go to voicemail. Emergency calls are routed to on-call electrician, then operations manager, then 24-hour answering service.",
+  "office_hours_flow_summary": "Calls are answered by agent, who transfers caller to dispatch after 30 seconds for non-emergencies and 20 seconds for emergencies.",
+  "special_instructions": [
+    "always ask if the customer is a repeat client",
+    "repeat clients get priority scheduling",
+    "mention free electrical safety inspection at the end of non-emergency calls"
+  ],
+  "questions_or_unknowns": [],
+  "notes": "Uses Housecall Pro software",
+  "extracted_at": "2026-03-05T05:41:47Z",
+  "version": "v2",
+  "updated_at": "2026-03-05T05:42:00Z"
+}

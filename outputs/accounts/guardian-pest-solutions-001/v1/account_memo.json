@@ -1,0 +1,60 @@
+{
+  "account_id": "guardian-pest-solutions-001",
+  "company_name": "Guardian Pest Solutions",
+  "business_hours": {
+    "days": "Monday-Friday",
+    "start": "7:30 AM",
+    "end": "6:00 PM",
+    "timezone": "Eastern Time",
+    "saturday": "8 AM to 2 PM",
+    "sunday": null
+  },
+  "office_address": "3200 West Colonial Drive, Suite 250, Orlando, FL 32808",
+  "services_supported": [
+    "general pest",
+    "termites",
+    "rodents",
+    "mosquito control",
+    "bed bugs",
+    "wildlife removal"
+  ],
+  "emergency_definition": [
+    "active bee or wasp swarm inside a structure",
+    "venomous snake inside the home",
+    "severe rodent infestation in a food service business"
+  ],
+  "emergency_routing_rules": {
+    "primary": {
+      "name": "Sandra Okafor",
+      "phone": "407-555-0165"
+    },
+    "secondary": {
+      "name": "Derek Hughes",
+      "phone": "407-555-0281"
+    },
+    "tertiary": {
+      "name": null,
+      "phone": null
+    },
+    "fallback_action": "promise a callback within 1 hour and take a full message"
+  },
+  "non_emergency_routing_rules": "Voicemail. Callbacks next business morning. Saturday afternoon calls get returned Monday.",
+  "call_transfer_rules": {
+    "wait_seconds": 45,
+    "retries": null,
+    "fail_action": "take a full message and promise a callback within 2 hours"
+  },
+  "integration_constraints": [
+    "never schedule a termite treatment job without first confirming a termite inspection has been completed and logged in PestPac"
+  ],
+  "after_hours_flow_summary": "Non-emergency after-hours calls go to voicemail and get returned the next business morning. Saturday afternoon calls get returned Monday.",
+  "office_hours_flow_summary": "Collect name, number, address, and type of pest issue, then transfer to scheduling team. Emergency situations get same-day response.",
+  "special_instructions": [
+    "always ask if the property is residential or commercial",
+    "never promise a specific treatment method on the phone"
+  ],
+  "questions_or_unknowns": [],
+  "notes": "",
+  "extracted_at": "2026-03-05T05:41:49Z",
+  "version": "v1"
+}

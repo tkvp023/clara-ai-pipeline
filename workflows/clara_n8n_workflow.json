@@ -1,0 +1,216 @@
+{
+  "name": "Clara AI Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "demo-transcript",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger-a",
+      "name": "Webhook: Receive Demo Transcript",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "notes": "Trigger Pipeline A. POST with { transcript_text, filename }"
+    },
+    {
+      "parameters": {
+        "jsCode": "const transcript = $input.first().json.transcript_text;\nconst filename = $input.first().json.filename || 'unknown';\nreturn [{ json: { transcript, filename, received_at: new Date().toISOString() } }];"
+      },
+      "id": "normalize-input-a",
+      "name": "Normalize Input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "Bearer {{ $env.GROQ_API_KEY }}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "llama-3.3-70b-versatile"
+            },
+            {
+              "name": "temperature",
+              "value": "0.1"
+            },
+            {
+              "name": "max_tokens",
+              "value": "2000"
+            },
+            {
+              "name": "messages",
+              "value": "={{ JSON.stringify([{ role: 'user', content: 'Extract structured account memo JSON from this transcript. Return ONLY valid JSON with fields: account_id, company_name, business_hours, office_address, services_supported, emergency_definition, emergency_routing_rules, non_emergency_routing_rules, call_transfer_rules, integration_constraints, after_hours_flow_summary, office_hours_flow_summary, questions_or_unknowns, notes. Do not invent data. Transcript: ' + $json.transcript }]) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "groq-extract-memo",
+      "name": "Groq: Extract Account Memo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [680, 300],
+      "notes": "Calls Groq LLM to extract structured JSON from transcript"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.choices[0].message.content;\nconst clean = raw.replace(/```json|```/g, '').trim();\nconst start = clean.indexOf('{');\nconst end = clean.lastIndexOf('}') + 1;\nconst memo = JSON.parse(clean.slice(start, end));\nmemo.version = 'v1';\nmemo.extracted_at = new Date().toISOString();\nreturn [{ json: memo }];"
+      },
+      "id": "parse-memo-json",
+      "name": "Parse Memo JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const memo = $input.first().json;\nconst company = memo.company_name || 'the company';\nconst hours = memo.business_hours || {};\nconst routing = memo.emergency_routing_rules || {};\nconst transfer = memo.call_transfer_rules || {};\nconst emergencies = (memo.emergency_definition || []).map(e => '  - ' + e).join('\\n');\nconst special = (memo.special_instructions || []).map(s => '- ' + s).join('\\n');\n\nconst systemPrompt = `You are a professional AI phone receptionist for ${company}.\\n\\nNEVER mention you are an AI or reference function calls. Speak naturally.\\n\\n## BUSINESS HOURS\\n${hours.days || 'Mon-Fri'} ${hours.start || '8AM'} - ${hours.end || '5PM'} ${hours.timezone || ''}\\n\\n## BUSINESS HOURS FLOW\\n1. Greet caller, state company name\\n2. Ask for their name\\n3. Understand the issue\\n4. Collect callback number\\n5. Transfer to team\\n6. If transfer fails: ${transfer.fail_action || 'Take a message, promise callback'}\\n7. Confirm next steps, ask if anything else, close warmly\\n\\n## AFTER HOURS FLOW\\n1. State office is closed\\n2. Ask if emergency or general inquiry\\n3. EMERGENCIES are:\\n${emergencies}\\n4. If emergency: collect name, number, address immediately\\n5. Attempt transfer to on-call team\\n6. If transfer fails: ${routing.fallback_action || 'Take message, promise 30min callback'}\\n7. Assure quick followup\\n\\n## RULES\\n- Never mention function calls or transfers by name\\n- Always get callback number before ending call\\n- Do not ask more than 3 questions before helping`;\n\nconst spec = {\n  agent_name: company + ' AI Receptionist',\n  version: 'v1',\n  generated_at: new Date().toISOString(),\n  voice_style: { gender: 'female', tone: 'professional and warm', speed: 'normal' },\n  system_prompt: systemPrompt,\n  key_variables: {\n    company_name: company,\n    timezone: hours.timezone,\n    business_hours: hours,\n    office_address: memo.office_address,\n    emergency_contacts: routing\n  },\n  call_transfer_protocol: {\n    wait_seconds: transfer.wait_seconds || 30,\n    transfer_order: [routing.primary, routing.secondary, routing.tertiary].filter(Boolean),\n    on_fail: transfer.fail_action\n  },\n  fallback_protocol: {\n    action: 'Take message',\n    fields: ['name', 'callback_number', 'issue', 'address'],\n    promise: '30 min callback for emergencies, next business day for non-emergencies'\n  }\n};\n\nreturn [{ json: { memo, agent_spec: spec, account_id: memo.account_id } }];"
+      },
+      "id": "generate-agent-spec",
+      "name": "Generate Agent Spec",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 300],
+      "notes": "Generates Retell agent spec from structured memo"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nconst fs = require('fs');\nconst path = require('path');\nconst accountId = data.account_id || 'unknown';\nconst dir = path.join('/data/outputs/accounts', accountId, 'v1');\nfs.mkdirSync(dir, { recursive: true });\nfs.writeFileSync(path.join(dir, 'account_memo.json'), JSON.stringify(data.memo, null, 2));\nfs.writeFileSync(path.join(dir, 'agent_spec.json'), JSON.stringify(data.agent_spec, null, 2));\nreturn [{ json: { account_id: accountId, status: 'saved', output_dir: dir } }];"
+      },
+      "id": "save-outputs-a",
+      "name": "Save Outputs to Disk",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1340, 300],
+      "notes": "Saves memo and agent spec JSON to /data/outputs/"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": "{{ $env.GOOGLE_SHEET_ID }}",
+        "sheetName": "Pipeline Tracker",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "account_id": "={{ $json.account_id }}",
+            "status": "v1_complete",
+            "processed_at": "={{ new Date().toISOString() }}"
+          }
+        }
+      },
+      "id": "log-to-sheets",
+      "name": "Log to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1560, 300],
+      "notes": "Logs each processed account to Google Sheets tracker"
+    },
+    {
+      "parameters": {
+        "path": "onboarding-transcript",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger-b",
+      "name": "Webhook: Receive Onboarding Transcript",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 600],
+      "notes": "Trigger Pipeline B. POST with { transcript_text, account_id }"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst fs = require('fs');\nconst path = require('path');\nconst accountId = input.account_id;\nconst memoPath = path.join('/data/outputs/accounts', accountId, 'v1', 'account_memo.json');\nif (!fs.existsSync(memoPath)) throw new Error('No v1 memo found for: ' + accountId);\nconst existing = JSON.parse(fs.readFileSync(memoPath, 'utf8'));\nreturn [{ json: { transcript: input.transcript_text, account_id: accountId, existing_memo: existing } }];"
+      },
+      "id": "load-v1-memo",
+      "name": "Load v1 Memo",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 600]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "Bearer {{ $env.GROQ_API_KEY }}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "model", "value": "llama-3.3-70b-versatile" },
+            { "name": "temperature", "value": "0.1" },
+            { "name": "max_tokens", "value": "3000" },
+            {
+              "name": "messages",
+              "value": "={{ JSON.stringify([{ role: 'user', content: 'You are updating an existing account memo with onboarding call info. Return ONLY JSON with two keys: updated_memo (full merged memo) and changelog (array of {field, old_value, new_value, reason}). Existing memo: ' + JSON.stringify($json.existing_memo) + ' Onboarding transcript: ' + $json.transcript }]) }}"
+            }
+          ]
+        }
+      },
+      "id": "groq-extract-updates",
+      "name": "Groq: Extract Updates",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [680, 600]
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.choices[0].message.content;\nconst clean = raw.replace(/```json|```/g, '').trim();\nconst start = clean.indexOf('{');\nconst end = clean.lastIndexOf('}') + 1;\nconst result = JSON.parse(clean.slice(start, end));\nresult.updated_memo.version = 'v2';\nresult.updated_memo.updated_at = new Date().toISOString();\nreturn [{ json: { ...result, account_id: $('load-v1-memo').first().json.account_id } }];"
+      },
+      "id": "parse-updates",
+      "name": "Parse Updates",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 600]
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nconst fs = require('fs');\nconst path = require('path');\nconst accountId = data.account_id;\nconst v2dir = path.join('/data/outputs/accounts', accountId, 'v2');\nfs.mkdirSync(v2dir, { recursive: true });\nfs.writeFileSync(path.join(v2dir, 'account_memo.json'), JSON.stringify(data.updated_memo, null, 2));\nconst changelog = { account_id: accountId, from: 'v1', to: 'v2', updated_at: new Date().toISOString(), changes: data.changelog };\nfs.writeFileSync(path.join(v2dir, 'changelog.json'), JSON.stringify(changelog, null, 2));\nreturn [{ json: { account_id: accountId, changes: data.changelog.length, status: 'v2_saved' } }];"
+      },
+      "id": "save-outputs-b",
+      "name": "Save v2 Outputs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 600]
+    }
+  ],
+  "connections": {
+    "Webhook: Receive Demo Transcript": { "main": [[{ "node": "Normalize Input", "type": "main", "index": 0 }]] },
+    "Normalize Input": { "main": [[{ "node": "Groq: Extract Account Memo", "type": "main", "index": 0 }]] },
+    "Groq: Extract Account Memo": { "main": [[{ "node": "Parse Memo JSON", "type": "main", "index": 0 }]] },
+    "Parse Memo JSON": { "main": [[{ "node": "Generate Agent Spec", "type": "main", "index": 0 }]] },
+    "Generate Agent Spec": { "main": [[{ "node": "Save Outputs to Disk", "type": "main", "index": 0 }]] },
+    "Save Outputs to Disk": { "main": [[{ "node": "Log to Google Sheets", "type": "main", "index": 0 }]] },
+    "Webhook: Receive Onboarding Transcript": { "main": [[{ "node": "Load v1 Memo", "type": "main", "index": 0 }]] },
+    "Load v1 Memo": { "main": [[{ "node": "Groq: Extract Updates", "type": "main", "index": 0 }]] },
+    "Groq: Extract Updates": { "main": [[{ "node": "Parse Updates", "type": "main", "index": 0 }]] },
+    "Parse Updates": { "main": [[{ "node": "Save v2 Outputs", "type": "main", "index": 0 }]] }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "description": "Clara AI Pipeline - Demo Call to Retell Agent v1, Onboarding to v2 with changelog",
+    "version": "1.0.0"
+  }
+}

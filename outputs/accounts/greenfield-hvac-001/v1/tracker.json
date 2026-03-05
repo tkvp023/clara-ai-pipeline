@@ -1,0 +1,8 @@
+{
+  "account_id": "greenfield-hvac-001",
+  "company_name": "Greenfield HVAC Services",
+  "status": "v1_complete",
+  "transcript_source": "C:\\Users\\THARUN\\Documents\\clara-pipeline-final\\clara-pipeline\\sample_transcripts\\demo\\demo_001.txt",
+  "output_dir": "C:\\Users\\THARUN\\Documents\\clara-pipeline-final\\clara-pipeline\\outputs\\accounts\\greenfield-hvac-001\\v1",
+  "created_at": "2026-03-05T05:41:44Z"
+}

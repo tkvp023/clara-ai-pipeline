@@ -1,0 +1,36 @@
+ONBOARDING CALL TRANSCRIPT - Account: Greenfield HVAC Services
+Account ID: greenfield-hvac-001
+Date: 2024-01-22
+Duration: 25 minutes
+
+Onboarding Specialist (Clara): Hi Mike, great to officially have you onboard! Let's go through the details to finalize your AI agent setup.
+
+Mike Johnson: Sounds good, let's do it.
+
+Clara: First, I want to confirm your business hours. You mentioned Mon-Fri 8-6, Sat 9-2, correct?
+
+Mike: Actually, we updated that. We're now open Mon-Fri 7:30 AM to 6:30 PM Central. Saturdays stay the same. And we added Sunday emergency-only from 10 AM to 2 PM.
+
+Clara: Got it. Any changes to your emergency definition?
+
+Mike: Yes, we're adding water heater failure to the emergency list. Especially in winter. So the full list is: no heat below 40°F outside, no AC above 95°F (we dropped it from 100), gas leaks, carbon monoxide alarms, and now water heater failures.
+
+Clara: And emergency routing - any updates there?
+
+Mike: Dave Martinez is now the secondary contact. Our new primary on-call is Tom Rivera at 512-555-0341. Dave stays as backup at 512-555-0192. Sarah Chen left the company so remove her. We also added a third fallback - if both Tom and Dave don't answer, call our emergency answering service at 512-555-9999 and they'll handle dispatch.
+
+Clara: Perfect. Any changes to the ServiceTitan constraint?
+
+Mike: Two new ones. Never create sprinkler system jobs in ServiceTitan - those go to our subcontractor directly. And never schedule a job without first confirming the customer's address.
+
+Clara: What about the agent greeting or conversation style?
+
+Mike: We want it to sound a bit more friendly. Start with "Thanks for calling Greenfield HVAC, your comfort is our priority! How can I help you today?" Also the agent should always ask for the customer's name first before anything else.
+
+Clara: Anything else?
+
+Mike: Yes - we now have a maintenance contract program. If a caller mentions they have a maintenance agreement, flag them as priority and try to get them to the front of the line. The agent should ask "Are you currently on one of our maintenance agreements?" during business hours.
+
+Clara: Got it. I think that covers everything. We'll have your updated agent ready within 24 hours.
+
+Mike: Perfect, thank you!

@@ -1,0 +1,63 @@
+{
+  "account_id": "brightline-electrical-services-001",
+  "company_name": "Brightline Electrical Services",
+  "business_hours": {
+    "days": "Monday-Saturday",
+    "start": "8:00 AM",
+    "end": "7:00 PM",
+    "timezone": "Mountain Standard Time",
+    "saturday": "8:00 AM - 7:00 PM",
+    "sunday": null
+  },
+  "office_address": "4455 East Camelback Road, Suite 300, Phoenix, AZ 85018",
+  "services_supported": [
+    "residential electrical",
+    "light commercial electrical",
+    "panel upgrades",
+    "wiring",
+    "outlet installs",
+    "EV charger installs",
+    "lighting"
+  ],
+  "emergency_definition": [
+    "complete power outage to the whole home",
+    "sparking or burning smell from an outlet or panel",
+    "downed power lines on property",
+    "flooding near electrical panels"
+  ],
+  "emergency_routing_rules": {
+    "primary": {
+      "name": "on-call electrician",
+      "phone": "602-555-0177"
+    },
+    "secondary": {
+      "name": "Linda Park",
+      "phone": "602-555-0388"
+    },
+    "tertiary": {
+      "name": "24-hour answering service",
+      "phone": "602-555-1000"
+    },
+    "fallback_action": "caller goes to 24-hour answering service"
+  },
+  "non_emergency_routing_rules": "Voicemail. We call back same day if it's before 5 PM, or next morning if it comes in after 5 PM.",
+  "call_transfer_rules": {
+    "wait_seconds": 30,
+    "retries": null,
+    "fail_action": "apologize and say we'll call back within 90 minutes"
+  },
+  "integration_constraints": [
+    "never create a job for EV charger installs without first confirming the customer has a 200-amp panel",
+    "never discuss competitor pricing"
+  ],
+  "after_hours_flow_summary": "After-hours non-emergency calls go to voicemail. Emergency calls are routed to on-call electrician, then operations manager, then 24-hour answering service.",
+  "office_hours_flow_summary": "Calls are answered by agent, who transfers caller to dispatch after 30 seconds.",
+  "special_instructions": [
+    "always ask if the customer is a repeat client",
+    "repeat clients get priority scheduling"
+  ],
+  "questions_or_unknowns": [],
+  "notes": "Uses Housecall Pro software",
+  "extracted_at": "2026-03-05T05:41:47Z",
+  "version": "v1"
+}

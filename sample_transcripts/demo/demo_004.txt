@@ -1,0 +1,43 @@
+DEMO CALL TRANSCRIPT - Account: Summit Roofing & Restoration
+Date: 2024-01-18
+Duration: 22 minutes
+
+Sales Rep (Clara): Great to meet you! Tell me about Summit Roofing.
+
+Prospect (Diane Foster): Summit Roofing and Restoration, based in Nashville, Tennessee. We do residential and commercial roofing — repairs, full replacements, storm damage restoration, gutters, and skylights. We work heavily with insurance claims too. 12 years in business.
+
+Clara: Business hours?
+
+Diane: Monday through Friday, 8 AM to 5 PM Central Time. Saturdays 9 AM to 1 PM for estimates only. Closed Sundays.
+
+Clara: Emergencies?
+
+Diane: Yes, we handle emergency tarping after storms. Emergency triggers are: active roof leak causing interior water damage, major storm damage where structure is exposed, and tree-on-roof situations. These need same-day response.
+
+Clara: Emergency routing?
+
+Diane: All emergencies go to our storm response team lead, Marcus Webb, at 615-555-0211. If Marcus doesn't answer, try our operations line at 615-555-0340. If that fails too, the caller should leave a detailed voicemail at our emergency inbox — 615-555-0999 — and we guarantee a callback within 45 minutes.
+
+Clara: Non-emergency after hours?
+
+Diane: Standard voicemail. We respond next business day. For insurance claims inquiries specifically, direct them to leave a message and our claims specialist will call back within 24 hours.
+
+Clara: Job management system?
+
+Diane: We use JobNimbus. Critical rule — never create a job without a full property address and roof type (shingle, metal, flat). And never promise a same-day estimate — our standard is next business day unless it's storm season, which we'll update you on separately.
+
+Clara: Address?
+
+Diane: 800 Church Street, Suite 400, Nashville, TN 37203.
+
+Clara: Greeting?
+
+Diane: "Thank you for calling Summit Roofing and Restoration. Whether it's repairs or a full replacement, we're here to help. How can I assist you today?"
+
+Clara: Transfer rules?
+
+Diane: Collect name, number, property address, and nature of the issue before transferring. That way our team has everything ready. Transfer after about 60 seconds. If transfer fails, apologize and confirm a callback within 3 hours during business hours.
+
+Clara: Other rules?
+
+Diane: The agent should always ask if the caller has an insurance claim open — about 40% of our calls are insurance-related and they route differently. And never mention specific shingle brands — we're brand-agnostic and don't want to create bias.

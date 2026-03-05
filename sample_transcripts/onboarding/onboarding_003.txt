@@ -1,0 +1,32 @@
+ONBOARDING CALL TRANSCRIPT - Account: Brightline Electrical Services
+Account ID: brightline-electrical-services-001
+Date: 2024-01-24
+Duration: 19 minutes
+
+Onboarding Specialist (Clara): Hi Carlos, let's get Brightline fully set up. Starting with hours — Mon-Sat 8 AM to 7 PM Arizona Time, closed Sundays. Still correct?
+
+Carlos Mendes: Mostly yes. We extended weekday hours — now 7 AM to 8 PM Monday through Friday. Saturday stays 8 to 7. And we now take calls on Sunday 10 AM to 3 PM for scheduling only, no emergency response on Sundays.
+
+Clara: Any updates to emergency definitions?
+
+Carlos: We're narrowing it down. Remove "flooding near electrical panels" — that's really a plumber's job first. Revised list: complete power outage to the whole home, sparking or burning smell from outlet or panel, downed power lines on property, and we're adding electrical fire or smoke from a panel.
+
+Clara: Emergency routing?
+
+Carlos: Linda Park is now the primary on-call — she took over from the old number. Her direct cell is 602-555-0601. The general on-call line 602-555-0177 becomes the secondary. Answering service at 602-555-1000 stays as tertiary.
+
+Clara: Any Housecall Pro rule changes?
+
+Carlos: Yes, one important one. Never create a job for panel upgrades without first confirming the property type — we don't do panel upgrades in mobile homes or manufactured homes. Those get declined politely. The EV charger rule stays.
+
+Clara: Greeting changes?
+
+Carlos: We want to lead with urgency for emergencies — if the caller says "emergency" in the first sentence, the agent should skip the normal greeting and immediately say "I'm connecting you with our emergency team right now, please stay on the line." For normal calls keep the existing greeting.
+
+Clara: Transfer rules?
+
+Carlos: Reduce transfer wait to 20 seconds for emergencies specifically. Non-emergency stays at 30 seconds. Callback promise on transfer failure is now 60 minutes (down from 90).
+
+Clara: Anything else?
+
+Carlos: Yes — we now offer a free electrical safety inspection. The agent should mention it at the end of every non-emergency call: "Before you go, would you like to schedule a complimentary safety inspection?" This is a new lead generation step.

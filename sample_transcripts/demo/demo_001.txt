@@ -1,0 +1,43 @@
+DEMO CALL TRANSCRIPT - Account: Greenfield HVAC Services
+Date: 2024-01-15
+Duration: 18 minutes
+
+Sales Rep (Clara): Hi, thanks for joining the demo today! Can you tell me a bit about your business?
+
+Prospect (Mike Johnson): Sure! We're Greenfield HVAC Services. We do heating, ventilation, and AC installation and repair. We're based in Austin, Texas. Been in business for 12 years.
+
+Clara: Great! What are your typical business hours?
+
+Mike: We're open Monday through Friday, 8 AM to 6 PM Central Time. On Saturdays we do 9 to 2. We're closed Sundays.
+
+Clara: And do you handle emergency calls after hours?
+
+Mike: Yes, absolutely. HVAC emergencies are things like: no heat in winter when it's below 40 degrees outside, AC completely out when it's over 100 degrees, gas leaks, or carbon monoxide alarms going off. Those are our main emergency triggers.
+
+Clara: How do you route those emergency calls?
+
+Mike: First we try to reach our on-call tech, that's usually Dave Martinez at 512-555-0192. If Dave doesn't pick up within 2 rings, we try Sarah Chen at 512-555-0847. If neither answers, the caller should leave a message and we guarantee a 30-minute callback.
+
+Clara: What about non-emergency after-hours calls?
+
+Mike: Those just go to voicemail and we call back the next business day. We ask them to leave their name, number, and a brief description of the issue.
+
+Clara: What system do you use for job management?
+
+Mike: We use ServiceTitan. All jobs need to go in there. One important thing - never create a job for a warranty callback in ServiceTitan, those go through a separate warranty portal.
+
+Clara: What's your office address?
+
+Mike: 4821 Burnet Road, Suite 200, Austin, TX 78756.
+
+Clara: Great, and what should the AI agent say when it answers during business hours?
+
+Mike: Something professional, like "Thank you for calling Greenfield HVAC Services, how can I help you today?" Keep it simple.
+
+Clara: How long should the agent wait before attempting a transfer?
+
+Mike: Give the caller about 30 seconds to describe their issue, then transfer. If the transfer fails, apologize and take a message.
+
+Clara: Perfect. Any other constraints we should know about?
+
+Mike: Just make sure the agent never promises same-day service unless it's an emergency. And always get a callback number before ending any call.

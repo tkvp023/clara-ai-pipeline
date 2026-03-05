@@ -1,0 +1,43 @@
+DEMO CALL TRANSCRIPT - Account: Riverside Plumbing & Drain
+Date: 2024-01-16
+Duration: 20 minutes
+
+Sales Rep (Clara): Hi, thanks for taking the time today! Tell me about your business.
+
+Prospect (Janet Wu): Sure! We're Riverside Plumbing & Drain. We handle residential and commercial plumbing — drain cleaning, water heater installs, leak repairs, pipe replacements, sewer line work. We're in Denver, Colorado. Been running for 8 years.
+
+Clara: Great. What are your business hours?
+
+Janet: Monday through Friday, 7 AM to 5 PM Mountain Time. We're closed weekends for regular calls but we do take emergency calls 24/7.
+
+Clara: What counts as an emergency for you?
+
+Janet: Burst pipes, sewage backup into the home, complete loss of water to the house, and gas line leaks. Those are our four main ones. Oh, and water heater explosions obviously, but that's rare.
+
+Clara: How do emergency calls get routed?
+
+Janet: We have one main on-call line — that's our dispatcher, Rick Sanchez, at 720-555-0134. He coordinates everything. If Rick doesn't answer within 3 rings, the caller should try our backup line at 720-555-0290. If that also fails, take a message and promise a 20-minute callback.
+
+Clara: Non-emergency after-hours?
+
+Janet: Voicemail only. We return all non-emergency calls by 9 AM next business day.
+
+Clara: What job management software do you use?
+
+Janet: ServiceTitan. One rule — never schedule a drain cleaning job as "emergency" in ServiceTitan unless I personally approve it. Drain cleans don't qualify as emergencies even if the customer insists.
+
+Clara: Your office address?
+
+Janet: 1200 Platte River Drive, Suite 105, Denver, CO 80223.
+
+Clara: What should the agent say when answering during business hours?
+
+Janet: "Thank you for calling Riverside Plumbing and Drain, how can we help you today?" Keep it simple and professional.
+
+Clara: How long should it wait before transferring?
+
+Janet: Collect name, number, and basic issue description first — that takes maybe 45 seconds — then transfer. If transfer fails, take a full message and promise a callback within 2 hours during business hours.
+
+Clara: Anything else?
+
+Janet: Yes — always verify if it's residential or commercial before routing. Commercial jobs go to a different team. And never quote prices on the phone — we always say "a technician will provide a free estimate on-site."

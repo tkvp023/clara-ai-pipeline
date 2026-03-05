@@ -1,0 +1,103 @@
+{
+  "account_id": "summit-roofing-001",
+  "company_name": "Summit Roofing & Restoration",
+  "from_version": "v1",
+  "to_version": "v2",
+  "updated_at": "2026-03-05T05:42:10Z",
+  "changes": [
+    {
+      "field": "business_hours.start",
+      "old_value": "8:00 AM",
+      "new_value": "7:30 AM",
+      "reason": "Updated during onboarding call to reflect new business hours"
+    },
+    {
+      "field": "business_hours.end",
+      "old_value": "5:00 PM",
+      "new_value": "6:00 PM",
+      "reason": "Updated during onboarding call to reflect new business hours"
+    },
+    {
+      "field": "business_hours.saturday",
+      "old_value": "9:00 AM - 1:00 PM",
+      "new_value": "8:00 AM - 4:00 PM",
+      "reason": "Updated during onboarding call to reflect new Saturday hours and all call types"
+    },
+    {
+      "field": "emergency_definition",
+      "old_value": [
+        "active roof leak causing interior water damage",
+        "major storm damage where structure is exposed",
+        "tree-on-roof situations"
+      ],
+      "new_value": [
+        "active roof leak causing interior water damage",
+        "major storm damage where structure is exposed",
+        "tree-on-roof situations",
+        "heavy interior flooding from roof breach",
+        "structural collapse risk"
+      ],
+      "reason": "Updated during onboarding call to reflect new emergency definitions"
+    },
+    {
+      "field": "emergency_routing_rules.secondary",
+      "old_value": {
+        "name": "operations line",
+        "phone": "615-555-0340"
+      },
+      "new_value": {
+        "name": "Priya Nair",
+        "phone": "615-555-0455"
+      },
+      "reason": "Updated during onboarding call to reflect new secondary emergency contact"
+    },
+    {
+      "field": "emergency_routing_rules.tertiary",
+      "old_value": {
+        "name": "operations line",
+        "phone": "615-555-0340"
+      },
+      "new_value": {
+        "name": "emergency inbox",
+        "phone": "615-555-0999"
+      },
+      "reason": "Updated during onboarding call to reflect new tertiary emergency contact"
+    },
+    {
+      "field": "call_transfer_rules.fail_action",
+      "old_value": "apologize and confirm a callback within 3 hours",
+      "new_value": "apologize and confirm a callback within 90 minutes",
+      "reason": "Updated during onboarding call to reflect new callback promise"
+    },
+    {
+      "field": "integration_constraints",
+      "old_value": [
+        "never create a job without a full property address and roof type",
+        "never promise a same-day estimate"
+      ],
+      "new_value": [
+        "never create a job without a full property address and roof type",
+        "never promise a same-day estimate",
+        "all storm damage jobs must have a photo attached before the job is created",
+        "insurance claim jobs must be tagged with the insurance carrier name in JobNimbus",
+        "never schedule a metal roof job without confirming we have a certified metal roofing technician available that week"
+      ],
+      "reason": "Updated during onboarding call to reflect new integration constraints"
+    },
+    {
+      "field": "special_instructions",
+      "old_value": [
+        "always ask if the caller has an insurance claim open",
+        "never mention specific shingle brands"
+      ],
+      "new_value": [
+        "always ask if the caller has an insurance claim open",
+        "never mention specific shingle brands",
+        "ask about insurance earlier in the conversation",
+        "ask 'Were you referred to us by anyone?' at the end of every call"
+      ],
+      "reason": "Updated during onboarding call to reflect new special instructions"
+    }
+  ],
+  "total_changes": 9
+}

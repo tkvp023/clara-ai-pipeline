@@ -1,0 +1,62 @@
+{
+  "account_id": "summit-roofing-001",
+  "company_name": "Summit Roofing & Restoration",
+  "business_hours": {
+    "days": "Monday-Friday",
+    "start": "8:00 AM",
+    "end": "5:00 PM",
+    "timezone": "Central Time",
+    "saturday": "9:00 AM - 1:00 PM",
+    "sunday": null
+  },
+  "office_address": "800 Church Street, Suite 400, Nashville, TN 37203",
+  "services_supported": [
+    "residential roofing",
+    "commercial roofing",
+    "repairs",
+    "full replacements",
+    "storm damage restoration",
+    "gutters",
+    "skylights"
+  ],
+  "emergency_definition": [
+    "active roof leak causing interior water damage",
+    "major storm damage where structure is exposed",
+    "tree-on-roof situations"
+  ],
+  "emergency_routing_rules": {
+    "primary": {
+      "name": "Marcus Webb",
+      "phone": "615-555-0211"
+    },
+    "secondary": {
+      "name": "operations line",
+      "phone": "615-555-0340"
+    },
+    "tertiary": {
+      "name": "emergency inbox",
+      "phone": "615-555-0999"
+    },
+    "fallback_action": "leave a detailed voicemail"
+  },
+  "non_emergency_routing_rules": "standard voicemail, responded next business day",
+  "call_transfer_rules": {
+    "wait_seconds": 60,
+    "retries": null,
+    "fail_action": "apologize and confirm a callback within 3 hours"
+  },
+  "integration_constraints": [
+    "never create a job without a full property address and roof type",
+    "never promise a same-day estimate"
+  ],
+  "after_hours_flow_summary": "Non-emergency calls go to standard voicemail, responded next business day. Insurance claims inquiries are responded to within 24 hours.",
+  "office_hours_flow_summary": "Calls are answered and routed according to emergency or non-emergency status, with emergency calls going to the storm response team lead.",
+  "special_instructions": [
+    "always ask if the caller has an insurance claim open",
+    "never mention specific shingle brands"
+  ],
+  "questions_or_unknowns": [],
+  "notes": "",
+  "extracted_at": "2026-03-05T05:41:48Z",
+  "version": "v1"
+}

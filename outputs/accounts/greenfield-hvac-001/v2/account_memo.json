@@ -1,0 +1,67 @@
+{
+  "account_id": "greenfield-hvac-001",
+  "company_name": "Greenfield HVAC Services",
+  "business_hours": {
+    "days": "Monday-Friday",
+    "start": "7:30 AM",
+    "end": "6:30 PM",
+    "timezone": "Central Time",
+    "saturday": "9:00 AM - 2:00 PM",
+    "sunday": "10:00 AM - 2:00 PM (emergency-only)"
+  },
+  "office_address": "4821 Burnet Road, Suite 200, Austin, TX 78756",
+  "services_supported": [
+    "heating",
+    "ventilation",
+    "AC installation",
+    "AC repair"
+  ],
+  "emergency_definition": [
+    "no heat in winter when it's below 40 degrees outside",
+    "AC completely out when it's over 95 degrees",
+    "gas leaks",
+    "carbon monoxide alarms going off",
+    "water heater failure"
+  ],
+  "emergency_routing_rules": {
+    "primary": {
+      "name": "Tom Rivera",
+      "phone": "512-555-0341"
+    },
+    "secondary": {
+      "name": "Dave Martinez",
+      "phone": "512-555-0192"
+    },
+    "tertiary": {
+      "name": "emergency answering service",
+      "phone": "512-555-9999"
+    },
+    "fallback_action": "leave a message and guarantee a 30-minute callback"
+  },
+  "non_emergency_routing_rules": "go to voicemail and call back the next business day",
+  "call_transfer_rules": {
+    "wait_seconds": 30,
+    "retries": null,
+    "fail_action": "apologize and take a message"
+  },
+  "integration_constraints": [
+    "never create a job for a warranty callback in ServiceTitan",
+    "never promise same-day service unless it's an emergency",
+    "always get a callback number before ending any call",
+    "never create sprinkler system jobs in ServiceTitan",
+    "never schedule a job without first confirming the customer's address"
+  ],
+  "after_hours_flow_summary": "Emergency calls are routed to on-call tech, then to secondary contact if needed. Non-emergency calls go to voicemail and are returned the next business day.",
+  "office_hours_flow_summary": "Calls are answered by AI agent, who transfers caller to a representative after a brief description of their issue.",
+  "special_instructions": [
+    "use ServiceTitan for job management",
+    "use separate warranty portal for warranty callbacks",
+    "ask for customer's name first",
+    "ask about maintenance agreements and prioritize"
+  ],
+  "questions_or_unknowns": [],
+  "notes": "Use friendly greeting during business hours: 'Thanks for calling Greenfield HVAC, your comfort is our priority! How can I help you today?'",
+  "extracted_at": "2026-03-05T05:41:44Z",
+  "version": "v2",
+  "updated_at": "2026-03-05T05:41:51Z"
+}

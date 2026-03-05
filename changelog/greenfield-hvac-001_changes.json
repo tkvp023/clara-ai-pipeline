@@ -1,0 +1,117 @@
+{
+  "account_id": "greenfield-hvac-001",
+  "company_name": "Greenfield HVAC Services",
+  "from_version": "v1",
+  "to_version": "v2",
+  "updated_at": "2026-03-05T05:41:51Z",
+  "changes": [
+    {
+      "field": "business_hours.start",
+      "old_value": "8:00 AM",
+      "new_value": "7:30 AM",
+      "reason": "Updated by Mike Johnson during onboarding call"
+    },
+    {
+      "field": "business_hours.end",
+      "old_value": "6:00 PM",
+      "new_value": "6:30 PM",
+      "reason": "Updated by Mike Johnson during onboarding call"
+    },
+    {
+      "field": "business_hours.sunday",
+      "old_value": null,
+      "new_value": "10:00 AM - 2:00 PM (emergency-only)",
+      "reason": "Added by Mike Johnson during onboarding call"
+    },
+    {
+      "field": "emergency_definition",
+      "old_value": [
+        "no heat in winter when it's below 40 degrees outside",
+        "AC completely out when it's over 100 degrees",
+        "gas leaks",
+        "carbon monoxide alarms going off"
+      ],
+      "new_value": [
+        "no heat in winter when it's below 40 degrees outside",
+        "AC completely out when it's over 95 degrees",
+        "gas leaks",
+        "carbon monoxide alarms going off",
+        "water heater failure"
+      ],
+      "reason": "Updated by Mike Johnson during onboarding call"
+    },
+    {
+      "field": "emergency_routing_rules.primary",
+      "old_value": {
+        "name": "Dave Martinez",
+        "phone": "512-555-0192"
+      },
+      "new_value": {
+        "name": "Tom Rivera",
+        "phone": "512-555-0341"
+      },
+      "reason": "Updated by Mike Johnson during onboarding call"
+    },
+    {
+      "field": "emergency_routing_rules.secondary",
+      "old_value": {
+        "name": "Sarah Chen",
+        "phone": "512-555-0847"
+      },
+      "new_value": {
+        "name": "Dave Martinez",
+        "phone": "512-555-0192"
+      },
+      "reason": "Updated by Mike Johnson during onboarding call"
+    },
+    {
+      "field": "emergency_routing_rules.tertiary",
+      "old_value": {
+        "name": "voicemail",
+        "phone": null
+      },
+      "new_value": {
+        "name": "emergency answering service",
+        "phone": "512-555-9999"
+      },
+      "reason": "Added by Mike Johnson during onboarding call"
+    },
+    {
+      "field": "integration_constraints",
+      "old_value": [
+        "never create a job for a warranty callback in ServiceTitan",
+        "never promise same-day service unless it's an emergency",
+        "always get a callback number before ending any call"
+      ],
+      "new_value": [
+        "never create a job for a warranty callback in ServiceTitan",
+        "never promise same-day service unless it's an emergency",
+        "always get a callback number before ending any call",
+        "never create sprinkler system jobs in ServiceTitan",
+        "never schedule a job without first confirming the customer's address"
+      ],
+      "reason": "Updated by Mike Johnson during onboarding call"
+    },
+    {
+      "field": "special_instructions",
+      "old_value": [
+        "use ServiceTitan for job management",
+        "use separate warranty portal for warranty callbacks"
+      ],
+      "new_value": [
+        "use ServiceTitan for job management",
+        "use separate warranty portal for warranty callbacks",
+        "ask for customer's name first",
+        "ask about maintenance agreements and prioritize"
+      ],
+      "reason": "Updated by Mike Johnson during onboarding call"
+    },
+    {
+      "field": "notes",
+      "old_value": "Use professional greeting during business hours",
+      "new_value": "Use friendly greeting during business hours: 'Thanks for calling Greenfield HVAC, your comfort is our priority! How can I help you today?'",
+      "reason": "Updated by Mike Johnson during onboarding call"
+    }
+  ],
+  "total_changes": 10
+}

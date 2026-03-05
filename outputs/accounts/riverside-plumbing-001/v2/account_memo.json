@@ -1,0 +1,66 @@
+{
+  "account_id": "riverside-plumbing-001",
+  "company_name": "Riverside Plumbing & Drain",
+  "business_hours": {
+    "days": "Monday-Saturday",
+    "start": "7:00 AM",
+    "end": "5:00 PM",
+    "timezone": "Mountain Time",
+    "saturday": "8:00 AM - 12:00 PM",
+    "sunday": null
+  },
+  "office_address": "1200 Platte River Drive, Suite 105, Denver, CO 80223",
+  "services_supported": [
+    "plumbing",
+    "drain cleaning",
+    "water heater installs",
+    "leak repairs",
+    "pipe replacements",
+    "sewer line work"
+  ],
+  "emergency_definition": [
+    "burst pipes",
+    "sewage backup into the home",
+    "complete loss of water to the house",
+    "gas line leaks",
+    "flooding from a broken appliance"
+  ],
+  "emergency_routing_rules": {
+    "primary": {
+      "name": "Maria Gonzalez",
+      "phone": "720-555-0501"
+    },
+    "secondary": {
+      "name": null,
+      "phone": "720-555-0290"
+    },
+    "tertiary": {
+      "name": "answering service",
+      "phone": "720-555-4444"
+    },
+    "fallback_action": "transfer to answering service"
+  },
+  "non_emergency_routing_rules": "Voicemail only. We return all non-emergency calls by 9 AM next business day.",
+  "call_transfer_rules": {
+    "wait_seconds": 45,
+    "retries": null,
+    "fail_action": "take a full message and promise a callback within 1 hour during business hours"
+  },
+  "integration_constraints": [
+    "never schedule a drain cleaning job as 'emergency' in ServiceTitan unless personally approved",
+    "never create a job without the customer's full address verified",
+    "all commercial plumbing jobs need to be flagged as 'commercial' in the job type field"
+  ],
+  "after_hours_flow_summary": "Emergency calls are routed to the on-call line. Non-emergency calls go to voicemail and are returned by 9 AM the next business day.",
+  "office_hours_flow_summary": "Answer with 'Thank you for calling Riverside Plumbing, family-owned since 2016, how can we help you today?' Ask for customer's name first, then collect number and basic issue description, then transfer.",
+  "special_instructions": [
+    "always verify if it's residential or commercial before routing",
+    "never quote prices on the phone",
+    "check for VIP customer program membership or code for priority scheduling"
+  ],
+  "questions_or_unknowns": [],
+  "notes": "",
+  "extracted_at": "2026-03-05T05:41:45Z",
+  "version": "v2",
+  "updated_at": "2026-03-05T05:41:54Z"
+}
